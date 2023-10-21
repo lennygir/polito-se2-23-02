@@ -1,0 +1,36 @@
+{
+    "services": [
+        {
+            "id": 1,
+            "name": "Emergenze"
+        },
+        {
+            "id": 2,
+            "name": "Radiologia"
+        },
+        {
+            "id": 3,
+            "name": "Maternità"
+        }
+    ],
+    "counters": [
+        {
+            "id": 1,
+            "services": [ 2 ], 
+            "clients": [], 
+            "servedClient": null
+        },
+        {
+            "id": 2,
+            "services": [], 
+            "clients": [], 
+            "servedClient": null
+        },
+        {
+            "id": 3,
+            "services": [ 1, 3 ], 
+            "clients": [], 
+            "servedClient": null
+        }
+    ]
+}
