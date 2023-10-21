@@ -1,5 +1,8 @@
 # Office Queue Management System
 
+Requirements : 
+- Node.js (v18) & npm
+
 ## React Client Application Routes
 
 - Route `/`: page content and purpose
@@ -8,16 +11,23 @@
 
 ## API Server
 
-- POST `/api/login`
-  - request parameters and request body content
-  - response body content
-- GET `/api/something`
-  - request parameters
-  - response body content
-- POST `/api/something`
-  - request parameters and request body content
-  - response body content
-- ...
+All commands have to be done in the `server` folder.
+
+### Running 
+
+- Run `npm install` to install dependencies
+- Run `npm run start` to start the server
+
+### Testing
+
+- Run `npm run test` to run tests
+
+### API Endpoints
+
+- GET `/`
+  - parameters: none
+  - response :
+    - 200 : { message: string }
 
 ## Database Tables
 
