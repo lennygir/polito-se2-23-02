@@ -8,6 +8,7 @@ app.use(function (req, res, next) {
     console.log(`[${(new Date()).toLocaleTimeString("it-IT")}] - ${req.method} ${req.url}`);
     next();
 });
+app.use(express.json());
 
 app.use(require("./routes.js"));
 
