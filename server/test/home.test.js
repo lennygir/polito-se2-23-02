@@ -1,3 +1,4 @@
+"use strict";
 const app = require("../src/server.js");
 const request = require("supertest");
 
@@ -121,6 +122,32 @@ describe("Removing a service from a counter", () => {
       .expect(200)
       .then((response) => {
         expect(response.body).toStrictEqual({});
+      });
+  });
+});
+
+describe("Get the queues current number", () => {
+  // todo: needs the functions to add clients to the queues to test these
+  test("Queue with no client currently being served", async () => {
+    await request(app)
+      .get("/counters/1/served-client")
+      .expect("Content-Type", /html/)
+      .expect(403)
+      .then((response) => {
+        expect(response.text).toBe(
+          "There is not a client currently served for this counter",
+        );
+      });
+  });
+  test("Getting the current ticket from a non existent counter", async () => {
+    await request(app)
+      .get("/counters/8/served-client")
+      .expect("Content-Type", /html/)
+      .expect(403)
+      .then((response) => {
+        expect(response.text).toBe(
+          "The counter you want to see does not exist",
+        );
       });
   });
 });

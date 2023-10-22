@@ -1,3 +1,4 @@
+"use strict";
 const dataService = require("./dataService");
 
 const router = require("express").Router();
@@ -72,6 +73,21 @@ router.delete("/counters/:counterId/services/:serviceId", (req, res) => {
     (service) => service.id !== parseInt(req.params.serviceId),
   );
   return res.json({});
+});
+
+router.get("/counters/:counterId/served-client", (req, res) => {
+  const counter_targeted = dataService.data.counters.find(
+    (counter) => parseInt(req.params.counterId) === counter.id,
+  );
+  if (counter_targeted === undefined) {
+    return res.status(403).send("The counter you want to see does not exist");
+  }
+  if (!counter_targeted.servedClient) {
+    return res
+      .status(403)
+      .send("There is not a client currently served for this counter");
+  }
+  return res.json(counter_targeted.servedClient);
 });
 
 // ==================================================
