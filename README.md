@@ -1,7 +1,9 @@
 # Office Queue Management System
 
-Requirements : 
-- Node.js (v18) & npm
+## Requirements
+
+- Node.js (v18)
+- npm
 
 ## React Client Application Routes
 
@@ -13,7 +15,7 @@ Requirements :
 
 All commands have to be done in the `server` folder.
 
-### Running 
+### Running
 
 - Run `npm install` to install dependencies
 - Run `npm run start` to start the server
@@ -43,8 +45,8 @@ All commands have to be done in the `server` folder.
     "counters": [
         {
             "id": <number>,
-            "services": <number[]>, 
-            "clients": <number[]>, 
+            "services": <number[]>,
+            "clients": <number[]>,
             "servedClient": <number>
         }
     ]
@@ -64,8 +66,3 @@ Note: the clients property in "counters" is a queue of ticket numbers
 ## Screenshot
 
 ![Screenshot](./img/screenshot.jpg)
-
-## Users Credentials
-
-- username, password (plus any other requested info)
-- username, password (plus any other requested info)
