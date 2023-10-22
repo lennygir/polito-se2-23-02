@@ -10,6 +10,18 @@ router.get("/", (req, res) => {
   res.status(200).json({ message: "API home page" });
 });
 
+router.get("/counter/:counter/callNextClient", (req, res) => {
+    const counter = dataService.data.counters.find(c => c.id === Number(req.params.counter));
+    if(!counter) {
+        return res.status(404).json({message: `Counter ${req.params.counter} not found`});
+    }
+    if(counter.clients.length === 0) {
+        return res.status(204).json();
+    }
+    counter.servedClient = counter.clients.shift(); // Shift remove first array and remove it from array
+    res.status(200).json({ data: counter.servedClient });
+});
+
 // ==================================================
 // Handle 404 not found - DO NOT ADD ENDPOINTS AFTER THIS
 // ==================================================
