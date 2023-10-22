@@ -29,11 +29,29 @@ All commands have to be done in the `server` folder.
   - response :
     - 200 : { message: string }
 
-## Database Tables
+## Data structure
 
-- Table `users` - contains xx yy zz
-- Table `something` - contains ww qq ss
-- ...
+```json
+{
+    "services": [
+        {
+            "id": <number>,
+            "name": <string>,
+            "serviceTime": <number>
+        }
+    ],
+    "counters": [
+        {
+            "id": <number>,
+            "services": <number[]>, 
+            "clients": <number[]>, 
+            "servedClient": <number>
+        }
+    ]
+}
+```
+
+Note: the clients property in "counters" is a queue of ticket numbers
 
 ## Main React Components
 

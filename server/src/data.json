@@ -2,15 +2,18 @@
     "services": [
         {
             "id": 1,
-            "name": "Emergenze"
+            "name": "Emergenze",
+            "serviceTime": 20
         },
         {
             "id": 2,
-            "name": "Radiologia"
+            "name": "Radiologia",
+            "serviceTime": 35
         },
         {
             "id": 3,
-            "name": "Maternità"
+            "name": "Maternità",
+            "serviceTime": 60
         }
     ],
     "counters": [
