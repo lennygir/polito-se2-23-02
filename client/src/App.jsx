@@ -23,7 +23,7 @@ function Main() {
         <Route index element={<LandingPage />} />
         <Route path="admin" element={<AdminPage />} />
         <Route path="officer/:officerId" element={<OfficerPage />} />
-        <Route path="client/:clientId" element={<ClientPage />} />
+        <Route path="client" element={<ClientPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Route>
     </Routes>
