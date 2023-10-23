@@ -32,6 +32,13 @@ All commands have to be done in the `server` folder.
   - parameters: none
   - response :
     - 200 : { message: string }
+- GET `/counter/:id/callNextClient`
+  - parameters:
+    - id: number - the id of the counter
+  - response :
+    - 200 : { data: number } - the ticket number of the next client
+    - 204 : { } - no client to call
+    - 404 : { message: string } - counter with the given id not found
 
 ## Data structures
 
