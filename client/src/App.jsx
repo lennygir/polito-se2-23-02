@@ -27,12 +27,13 @@ function Main() {
         <Route index element={<LandingPage setUser={setUser} />} />
         <Route path="admin" element={<AdminPage setUser={setUser} />}>
           <Route index path="counters" element={<CountersTable />} />
+          <Route path="edit-counters/:counterId" />
           <Route path="services" />
           <Route path="users" />
         </Route>
         <Route path="officer/:officerId" element={<OfficerPage />} />
         <Route path="client" element={<ClientPage />} />
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="*" element={<ErrorPage setUser={setUser} />} />
       </Route>
     </Routes>
   );

@@ -1,7 +1,7 @@
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export default function ErrorPage() {
+export default function ErrorPage(props) {
   return (
     <div id="error-page">
       <Container
@@ -35,7 +35,9 @@ export default function ErrorPage() {
           </Typography>
           <Box marginTop={4}>
             <Link to="/">
-              <Button variant="contained">Go back</Button>
+              <Button variant="contained" onClick={() => props.setUser("")}>
+                Go back
+              </Button>
             </Link>
           </Box>
         </Grid>
