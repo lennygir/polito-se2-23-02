@@ -32,4 +32,47 @@ describe("Testing the counter endpoints", () => {
         expect(response.body.message).toBe("Counter 10 not found");
       });
   });
+
+  //test of get counters
+  test("GET /counter/retCounters - should return 404 with a message", async () => {
+    dataService.data.counters.splice(0, dataService.data.counters.length);
+
+    await request(app)
+      .get("/counter/retCounters")
+      .expect("Content-Type", /json/)
+      .expect(404)
+      .then((response) => {
+        expect(response.body.message).toBe("No counters is found");
+      });
+  });
+
+  test("GET /counter/retCounters - should return the list of counters", async () => {
+    await request(app)
+      .get("/counter/retCounters")
+      .expect("Content-Type", /json/)
+      .expect(200)
+      .then((response) => {
+        expect(response.body.data).toEqual([
+          {
+            "id": 1,
+            "services": [2],
+            "clients": [],
+            "servedClient": null
+          },
+          {
+            "id": 2,
+            "services": [],
+            "clients": [],
+            "servedClient": null
+          },
+          {
+            "id": 3,
+            "services": [1, 3],
+            "clients": [],
+            "servedClient": null
+          }
+        ]);
+      });
+  });
+
 });
