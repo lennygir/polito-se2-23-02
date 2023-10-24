@@ -8,7 +8,7 @@ export default function ErrorPage() {
         disableGutters
         maxWidth="sm"
         component="main"
-        sx={{ pt: 8, pb: 6 }}
+        sx={{ pt: 20, pb: 6 }}
       >
         <Grid
           container
