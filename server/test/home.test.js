@@ -18,7 +18,7 @@ describe("Adding a service into a counter", () => {
   test("Putting an existing service into an existing counter", async () => {
     await request(app)
       .put("/counters/1")
-      .send({ service: 1 })
+      .send({ services: [1] })
       .expect("Content-Type", /json/)
       .expect(200)
       .then((response) => {
@@ -29,19 +29,19 @@ describe("Adding a service into a counter", () => {
   test("Putting a service that doesn't exist", async () => {
     await request(app)
       .put("/counters/1")
-      .send({ service: 4 })
+      .send({ services: [4] })
       .expect("Content-Type", /html/)
       .expect(403)
       .then((response) => {
         expect(response.text).toBe(
-          "The service you want to add does not exist",
+          "Some of the services you want to add do not exist",
         );
       });
   });
   test("Trying to modify a counter that doesn't exist", async () => {
     await request(app)
       .put("/counters/5")
-      .send({ service: 1 })
+      .send({ services: [1] })
       .expect("Content-Type", /html/)
       .expect(403)
       .then((response) => {
@@ -53,7 +53,7 @@ describe("Adding a service into a counter", () => {
   test("Putting the same service into the same counter multiple times gives no duplication", async () => {
     await request(app)
       .put("/counters/2")
-      .send({ service: 1 })
+      .send({ services: [1] })
       .expect("Content-Type", /json/)
       .expect(200)
       .then((response) => {
@@ -63,7 +63,7 @@ describe("Adding a service into a counter", () => {
       });
     await request(app)
       .put("/counters/2")
-      .send({ service: 1 })
+      .send({ services: [1] })
       .expect("Content-Type", /json/)
       .expect(200)
       .then((response) => {
@@ -128,6 +128,11 @@ describe("Removing a service from a counter", () => {
 
 describe("Get the queues current number", () => {
   // todo: needs the functions to add clients to the queues to test these
+  test("Get the currently served client", async () => {
+    // todo: add a client (new ticket api), get the currently served client and see if it is the previously added client
+    const ticket = await fetch("/services/1/getTicket");
+    await request(app).get("/counters/1/served-client");
+  });
   test("Queue with no client currently being served", async () => {
     await request(app)
       .get("/counters/1/served-client")
@@ -151,3 +156,5 @@ describe("Get the queues current number", () => {
       });
   });
 });
+
+describe("Some more complex tests", () => {});
