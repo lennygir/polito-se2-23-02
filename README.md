@@ -5,24 +5,26 @@
 - Node.js (v18)
 - npm
 
+## Running
+
+- Run `npm install` to install dependencies
+- Run `npm run dev` to start the client
+- Run `npm run start` to start the server
+
+## Testing
+
+- Run `npm run test` to run tests
+
 ## React Client Application Routes
 
-- Route `/`: page content and purpose
-- Route `/something/:param`: page content and purpose, param specification
-- ...
+- Route `/`: landing page
+- Route `/admin`: admin dashboard
+- Route `/officer/:id`: officer control panel
+- Route `/client`: client page to get a new ticket
 
 ## API Server
 
 All commands have to be done in the `server` folder.
-
-### Running
-
-- Run `npm install` to install dependencies
-- Run `npm run start` to start the server
-
-### Testing
-
-- Run `npm run test` to run tests
 
 ### API Endpoints
 
@@ -30,8 +32,15 @@ All commands have to be done in the `server` folder.
   - parameters: none
   - response :
     - 200 : { message: string }
+- GET `/counter/:id/callNextClient`
+  - parameters:
+    - id: number - the id of the counter
+  - response :
+    - 200 : { data: number } - the ticket number of the next client
+    - 204 : { } - no client to call
+    - 404 : { message: string } - counter with the given id not found
 
-## Data structure
+## Data structures
 
 ```json
 {
@@ -57,11 +66,8 @@ Note: the clients property in "counters" is a queue of ticket numbers
 
 ## Main React Components
 
-- `ListOfSomething` (in `List.js`): component purpose and main functionality
-- `GreatButton` (in `GreatButton.js`): component purpose and main functionality
-- ...
-
-(only _main_ components, minor ones may be skipped)
+- `ErrorPage` (in `ErrorPage.jsx`): component used to handle wrong client routes
+- `LandingPage` (in `LandingPage.jsx`): component used to access the app with a different role (client, officer or admin)
 
 ## Screenshot
 
