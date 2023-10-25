@@ -12,8 +12,9 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import Title from "./Title";
+import { Link } from "react-router-dom";
 
-const rows = [
+const counters = [
   {
     id: 1,
     date: "24/10/2023",
@@ -53,12 +54,12 @@ export default function CountersTable(props) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.id}>
-                  <TableCell>{row.id}</TableCell>
+              {counters.map((counter) => (
+                <TableRow key={counter.id}>
+                  <TableCell>{counter.id}</TableCell>
                   <TableCell>
                     <Stack direction="row" spacing={2}>
-                      {row.services.map((service) => (
+                      {counter.services.map((service) => (
                         <Chip
                           key={service.id}
                           color={service.color}
@@ -69,7 +70,11 @@ export default function CountersTable(props) {
                     </Stack>
                   </TableCell>
                   <TableCell align="right">
-                    <IconButton aria-label="edit">
+                    <IconButton
+                      aria-label="edit"
+                      component={Link}
+                      to={`/admin/edit-counters/${counter.id}`}
+                    >
                       <EditIcon fontSize="small" color="primary" />
                     </IconButton>
                   </TableCell>

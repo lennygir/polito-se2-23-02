@@ -8,6 +8,7 @@ import LandingPage from "./routes/LandingPage";
 import OfficerPage from "./routes/OfficerPage";
 import RootPage from "./routes/RootPage";
 import CountersTable from "./components/CountersTable";
+import EditCounterForm from "./components/EditCounterForm";
 
 function App() {
   return (
@@ -20,14 +21,16 @@ function App() {
 
 function Main() {
   const [user, setUser] = useState("");
+  const [services, setServices] = useState([]);
 
   return (
     <Routes>
+      {/* prettier-ignore */}
       <Route path="/" element={<RootPage user={user} setUser={setUser} />}>
         <Route index element={<LandingPage setUser={setUser} />} />
         <Route path="admin" element={<AdminPage setUser={setUser} />}>
           <Route index path="counters" element={<CountersTable />} />
-          <Route path="edit-counters/:counterId" />
+          <Route path="edit-counters/:counterId" element={<EditCounterForm services={services}/>}/>
           <Route path="services" />
           <Route path="users" />
         </Route>
