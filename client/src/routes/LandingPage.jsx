@@ -17,36 +17,36 @@ import { Link } from "react-router-dom";
 
 const roles = [
   {
-    title: "Officer",
+    name: "Officer",
     buttonText: "Get Started",
     buttonVariant: "outlined",
     route: "/officer",
     icon: <LocalPoliceIcon sx={{ height: 60, width: 60 }} />,
   },
   {
-    title: "Client",
+    name: "Client",
     buttonText: "Get Started",
     buttonVariant: "contained",
     route: "/client",
     icon: <PersonAddAlt1Icon sx={{ height: 60, width: 60 }} />,
   },
   {
-    title: "Admin",
+    name: "Admin",
     buttonText: "Get Started",
     buttonVariant: "outlined",
-    route: "/admin",
+    route: "/admin/counters",
     icon: <SettingsIcon sx={{ height: 60, width: 60 }} />,
   },
 ];
 
-export default function LandingPage() {
+export default function LandingPage(props) {
   return (
     <div id="landing-page">
       <Container
         disableGutters
         maxWidth="sm"
         component="main"
-        sx={{ pt: 8, pb: 6 }}
+        sx={{ pt: 20, pb: 6 }}
       >
         <Typography
           component="h1"
@@ -70,10 +70,10 @@ export default function LandingPage() {
       <Container maxWidth="md" component="main">
         <Grid container spacing={5} alignItems="flex-end">
           {roles.map((role) => (
-            <Grid item key={role.title} xs={12} md={4}>
+            <Grid item key={role.name} xs={12} md={4}>
               <Card>
                 <CardHeader
-                  title={role.title}
+                  title={role.name}
                   titleTypographyProps={{ align: "center" }}
                   sx={{
                     backgroundColor: (theme) =>
@@ -99,6 +99,7 @@ export default function LandingPage() {
                     to={role.route}
                     fullWidth
                     variant={role.buttonVariant}
+                    onClick={() => props.setUser(role.name)}
                   >
                     {role.buttonText}
                   </Button>
