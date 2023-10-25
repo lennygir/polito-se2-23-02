@@ -10,18 +10,45 @@ import {
   Grid,
   Paper,
 } from "@mui/material";
-import Title from "./Title";
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import { useNavigate } from "react-router-dom";
+import Title from "./Title";
 
 export default function EditCounterForm(props) {
+  const location = useLocation();
   const navigate = useNavigate();
-  const [counter, setCounter] = useState(undefined);
+
+  const services = props.services;
+  const counter = location.state?.counter;
+
+  const initialServices = counter ? counter.services.map((s) => s.id) : [];
+
+  const [selectedServices, setSelectedServices] = useState(initialServices);
+
+  const handleCheckboxChange = (serviceId) => {
+    if (selectedServices.includes(serviceId)) {
+      setSelectedServices(
+        selectedServices.filter((item) => item !== serviceId)
+      );
+    } else {
+      setSelectedServices([...selectedServices, serviceId]);
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // TODO: Update counter with selected services
+    if (
+      selectedServices.length > 0 &&
+      selectedServices.length <= services.length
+    ) {
+      const newCounter = {
+        ...counter,
+        services: selectedServices,
+      };
+
+      // TODO: - Call POST or PUT API to replace the old counter with the new one and setDirty(true)
+    }
   };
 
   return (
@@ -48,23 +75,29 @@ export default function EditCounterForm(props) {
                   You can select one or more services
                 </FormLabel>
                 <FormGroup>
-                  <FormControlLabel
-                    control={<Checkbox checked={true} name="gilad" />}
-                    label="Radiologia"
-                  />
-                  <FormControlLabel
-                    control={<Checkbox checked={false} name="jason" />}
-                    label="Emergenze"
-                  />
-                  <FormControlLabel
-                    control={<Checkbox checked={true} name="antoine" />}
-                    label="Maternità"
-                  />
+                  {services.map((service) => (
+                    <FormControlLabel
+                      key={service.id}
+                      control={
+                        <Checkbox
+                          name={service.name}
+                          checked={selectedServices.includes(service.id)}
+                          onChange={() => handleCheckboxChange(service.id)}
+                        />
+                      }
+                      label={service.name}
+                    />
+                  ))}
                 </FormGroup>
                 <FormHelperText>
                   *At least one service must be selected
                 </FormHelperText>
-                <Button type="submit" variant="contained" sx={{ marginTop: 3 }}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  disabled={selectedServices.length === 0}
+                  sx={{ marginTop: 3 }}
+                >
                   Save
                 </Button>
               </FormControl>

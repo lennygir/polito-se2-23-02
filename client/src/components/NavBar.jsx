@@ -1,6 +1,6 @@
 import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
-import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import { Link } from "react-router-dom";
+import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 
 export default function NavBar(props) {
   return (

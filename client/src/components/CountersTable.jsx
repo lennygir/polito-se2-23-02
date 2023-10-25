@@ -14,28 +14,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import Title from "./Title";
 import { Link } from "react-router-dom";
 
-const counters = [
-  {
-    id: 1,
-    services: [{ id: 2, name: "Radiologia", color: "info" }],
-  },
-  {
-    id: 2,
-    services: [
-      { id: 1, name: "Emergenze", color: "error" },
-      { id: 3, name: "Maternità", color: "secondary" },
-    ],
-  },
-  {
-    id: 3,
-    services: [
-      { id: 1, name: "Emergenze", color: "error" },
-      { id: 2, name: "Radiologia", color: "info" },
-      { id: 3, name: "Maternità", color: "secondary" },
-    ],
-  },
-];
-
 export default function CountersTable(props) {
   return (
     <Grid container spacing={3} sx={{ pt: 13, pl: 35, pr: 5 }}>
@@ -51,7 +29,7 @@ export default function CountersTable(props) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {counters.map((counter) => (
+              {props.counters.map((counter) => (
                 <TableRow key={counter.id}>
                   <TableCell>{counter.id}</TableCell>
                   <TableCell>
@@ -71,6 +49,7 @@ export default function CountersTable(props) {
                       aria-label="edit"
                       component={Link}
                       to={`/admin/edit-counters/${counter.id}`}
+                      state={{ counter: counter }}
                     >
                       <EditIcon fontSize="small" color="primary" />
                     </IconButton>

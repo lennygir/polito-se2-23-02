@@ -10,12 +10,6 @@ import {
 import CircleIcon from "@mui/icons-material/Circle";
 import Title from "./Title";
 
-const services = [
-  { id: 1, name: "Emergenze", description: "some text...", color: "error" },
-  { id: 2, name: "Radiologia", description: "some text...", color: "info" },
-  { id: 3, name: "Maternità", description: "some text...", color: "secondary" },
-];
-
 export default function ServicesTable(props) {
   return (
     <Grid container spacing={3} sx={{ pt: 13, pl: 35, pr: 5 }}>
@@ -32,7 +26,7 @@ export default function ServicesTable(props) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {services.map((service) => (
+              {props.services.map((service) => (
                 <TableRow key={service.id}>
                   <TableCell>{service.id}</TableCell>
                   <TableCell>{service.name}</TableCell>
