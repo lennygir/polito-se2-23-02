@@ -9,6 +9,8 @@ import OfficerPage from "./routes/OfficerPage";
 import RootPage from "./routes/RootPage";
 import CountersTable from "./components/CountersTable";
 import EditCounterForm from "./components/EditCounterForm";
+import ServicesTable from "./components/ServicesTable";
+import UsersTable from "./components/UsersTable";
 
 function App() {
   return (
@@ -31,8 +33,8 @@ function Main() {
         <Route path="admin" element={<AdminPage setUser={setUser} />}>
           <Route index path="counters" element={<CountersTable />} />
           <Route path="edit-counters/:counterId" element={<EditCounterForm services={services}/>}/>
-          <Route path="services" />
-          <Route path="users" />
+          <Route path="services" element={<ServicesTable />}/>
+          <Route path="users" element={<UsersTable />}/>
         </Route>
         <Route path="officer/:officerId" element={<OfficerPage />} />
         <Route path="client" element={<ClientPage />} />
