@@ -114,6 +114,16 @@ router.get("/counter/:counter/callNextClient", (req, res) => {
   res.status(200).json({ data: counter.servedClient });
 });
 
+//endpoint for returning all the counters
+router.get("/counter/retCounters", (req, res) => {
+  const ret = dataService.data.counters;
+  if(ret.length === 0) {
+      return res.status(404).json({message: `No counters is found`});
+  }
+  
+  res.status(200).json({ data: ret });
+});
+
 // ==================================================
 // Handle 404 not found - DO NOT ADD ENDPOINTS AFTER THIS
 // ==================================================
