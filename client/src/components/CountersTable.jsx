@@ -17,12 +17,10 @@ import { Link } from "react-router-dom";
 const counters = [
   {
     id: 1,
-    date: "24/10/2023",
     services: [{ id: 2, name: "Radiologia", color: "info" }],
   },
   {
     id: 2,
-    date: "25/10/2023",
     services: [
       { id: 1, name: "Emergenze", color: "error" },
       { id: 3, name: "Maternità", color: "secondary" },
@@ -30,7 +28,6 @@ const counters = [
   },
   {
     id: 3,
-    date: "26/10/2023",
     services: [
       { id: 1, name: "Emergenze", color: "error" },
       { id: 2, name: "Radiologia", color: "info" },
