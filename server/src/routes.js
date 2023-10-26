@@ -31,7 +31,9 @@ router.get("/", (req, res) => {
  * }
  */
 router.put("/counters/:counterId", (req, res) => {
-  // todo: missing type validation
+  if (!Number.isInteger(parseInt(req.params.counterId))) {
+    return res.status(403).send("Invalid counter name");
+  }
   const counter_targeted = dataService.data.counters.find(
     (counter) => parseInt(req.params.counterId) === counter.id,
   );
@@ -40,10 +42,13 @@ router.put("/counters/:counterId", (req, res) => {
       .status(403)
       .send("The counter you want to modify does not exist");
   }
+
   let service_not_existent = false;
   if (req.body.services) {
+    // check if every service id in the body is legal
     for (let service of req.body.services) {
       if (
+        !Number.isInteger(service) ||
         !dataService.data.services.some(
           (service_in_json) => service_in_json.id === service,
         )
@@ -51,20 +56,16 @@ router.put("/counters/:counterId", (req, res) => {
         service_not_existent = true;
         break;
       }
-      if (!counter_targeted.services.includes(service)) {
-        counter_targeted.services.push(service);
-      }
     }
   } else {
-    return res
-      .status(403)
-      .send("Some of the services you want to add do not exist");
+    return res.status(403).send("Missing services array");
   }
   if (service_not_existent) {
     return res
       .status(403)
       .send("Some of the services you want to add do not exist");
   }
+  counter_targeted.services = req.body.services;
   return res.json(counter_targeted);
 });
 
@@ -162,29 +163,27 @@ router.get("/service/:service/getTicket", (req, res) => {
   res.status(200).json({ data: dataService.data.currentTicketNumber });
 });
 
-
 //endpoint for returning all the counters
 router.get("/counter/retCounters", (req, res) => {
-  console.log("1")
+  console.log("1");
   const ret = dataService.data.counters;
-  if(ret.length === 0) {
-      return res.status(404).json({message: `No counters is found`});
+  if (ret.length === 0) {
+    return res.status(404).json({ message: `No counters is found` });
   }
-  
+
   res.status(200).json({ data: ret });
 });
 
 router.get("/counter/getData", (req, res) => {
-  
   const data = dataService.data;
-  if(data === undefined) {
-    return res.status(404).json({message: `No data is found`});
+  if (data === undefined) {
+    return res.status(404).json({ message: `No data is found` });
   }
-  const counters = data.counters.map(counter => {
+  const counters = data.counters.map((counter) => {
     const services = data.services
-      .filter(service => counter.services.includes(service.id))
-      .map(service => ({ id: service.id, name: service.name }));
-  
+      .filter((service) => counter.services.includes(service.id))
+      .map((service) => ({ id: service.id, name: service.name }));
+
     return { id: counter.id, services };
   });
   //console.log(JSON.stringify(counters, null, 2));
