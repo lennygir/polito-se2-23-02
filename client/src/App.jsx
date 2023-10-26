@@ -10,9 +10,7 @@ import RootPage from "./routes/RootPage";
 import CountersTable from "./components/CountersTable";
 import EditCounterForm from "./components/EditCounterForm";
 import ServicesTable from "./components/ServicesTable";
-import UsersTable from "./components/UsersTable";
-
-import { bs_counters, bs_services } from "./data";
+import API from "./API";
 
 function App() {
   return (
@@ -31,9 +29,14 @@ function Main() {
 
   useEffect(() => {
     if (dirty) {
-      // TODO: - Call GET apis to get all the counters and all the services
-      setCounters(bs_counters);
-      setServices(bs_services);
+      API.getCountersServices()
+        .then((counters) => setCounters(counters))
+        .catch((err) => console.log(err));
+
+      API.getServices()
+        .then((services) => setServices(services))
+        .catch((err) => console.log(err));
+
       setDirty(false);
     }
   }, [dirty]);
@@ -47,7 +50,6 @@ function Main() {
           <Route index path="counters" element={<CountersTable counters={counters}/>} />
           <Route path="edit-counters/:counterId" element={<EditCounterForm services={services} setDirty={setDirty}/>}/>
           <Route path="services" element={<ServicesTable services={services}/>}/>
-          <Route path="users" element={<UsersTable />}/>
         </Route>
         <Route path="officer/:officerId" element={<OfficerPage />} />
         <Route path="client" element={<ClientPage />} />
