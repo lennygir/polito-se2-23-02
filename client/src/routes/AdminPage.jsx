@@ -12,7 +12,6 @@ import {
 
 import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
 import MoneyIcon from "@mui/icons-material/Money";
-import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 import { Link, Outlet } from "react-router-dom";
@@ -28,11 +27,6 @@ const tabs = [
     name: "Services",
     icon: <MedicalServicesIcon />,
     url: "services",
-  },
-  {
-    name: "Users",
-    icon: <PersonIcon />,
-    url: "users",
   },
 ];
 
