@@ -70,6 +70,7 @@ describe("Testing the counter endpoints", () => {
   });
 
   test("GET /counter/retCounters - should return the list of counters", async () => {
+    
     await request(app)
       .get("/counter/retCounters")
       .expect("Content-Type", /json/)
@@ -99,14 +100,51 @@ describe("Testing the counter endpoints", () => {
   });
 
   test("GET /counter/getData - should return a formatted data of the DB", async () => {
-    
+    const expectedata = [
+      {
+        "id": 1,
+        "services": [
+          {
+            "id": 2,
+            "name": "Radiologia"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "services": []
+      },
+      {
+        "id": 3,
+        "services": [
+          {
+            "id": 1,
+            "name": "Emergenze"
+          },
+          {
+            "id": 3,
+            "name": "Maternità"
+          }
+        ]
+      }
+    ]
+    await request(app)
+      .get("/counter/getData")
+      .expect("Content-Type", /json/)
+      .expect(200)
+      .then((response) => {
+        expect(response.body.data).toEqual(expectedata);
+      });
+  });
 
+  test("GET /counter/getData - should return 404 if no data is present", async () => {
+    dataService.data = [];
     await request(app)
       .get("/counter/getData")
       .expect("Content-Type", /json/)
       .expect(404)
       .then((response) => {
-        expect(response.body.message).toBe("No counters is found");
+        expect(response.body.message).toBe("No data is found");
       });
   });
 
