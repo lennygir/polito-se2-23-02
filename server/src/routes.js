@@ -116,12 +116,12 @@ router.get("/counters/:counterId/served-client", (req, res) => {
 // Get the next client to be served for a counter given the counterId
 router.get("/counter/:counterId/callNextClient", (req, res) => {
   const counter = dataService.data.counters.find(
-    (c) => c.id === Number(req.params.counter),
+    (c) => c.id === Number(req.params.counterId)
   );
   if (!counter) {
     return res
       .status(404)
-      .json({ message: `Counter ${req.params.counter} not found` });
+      .json({ message: `Counter ${req.params.counterId} not found` });
   }
   if (counter.clients.length === 0) {
     return res.status(204).json();

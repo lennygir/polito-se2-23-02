@@ -17,10 +17,14 @@
 
 ## React Client Application Routes
 
-- Route `/`: landing page
+- Route `/`: landing page of the application
 - Route `/admin`: admin dashboard
-- Route `/officer/:id`: officer control panel
+- Route `/admin/counters`: counters table view
+- Route `/admin/edit-counters/:counterId`: edit counter form
+- Route `/admin/services`: services table view
+- Route `/officer`: officer control panel to call next client
 - Route `/client`: client page to get a new ticket
+- Route `/*`: error route page
 
 ## API Server
 
@@ -74,7 +78,14 @@ Note: the clients property in "counters" is a queue of ticket numbers
 
 - `ErrorPage` (in `ErrorPage.jsx`): component used to handle wrong client routes
 - `LandingPage` (in `LandingPage.jsx`): component used to access the app with a different role (client, officer or admin)
+- `AdminPage` (in `AdminPage.jsx`): component used to access the admin dashboard and navigate the tabs
+- `CountersTable` (in `CountersTable.jsx`): component used to display all the counters and related services each counter has
+- `CountersForm` (in `CountersForm.jsx`): component used to add or remove services from a specific counter
+- `ServicesTable` (in `ServicesTable.jsx`): component used to display all the services and the metadata attached to each service
+- `OfficerPage` (in `OfficerPage.jsx`): component used to access the officer dashboard and select a counter to call the next client in line
 
-## Screenshot
+## Screenshots
 
-![Screenshot](./img/screenshot.jpg)
+![Landing Page](img/landing-page.png)
+![Admin Counters](img/admin-dashboard-counters.png)
+![Officer Dashboard](img/officer-dashboard.png)
