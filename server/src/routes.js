@@ -108,7 +108,7 @@ router.get("/counters/:counterId/served-client", (req, res) => {
   return res.json(counter_targeted.servedClient);
 });
 
-router.get("/client", (req, res) => {
+router.get("/service", (req, res) => {
   const services = dataService.data.services;
   if (services.length === 0) {
     return res.status(204).json();
