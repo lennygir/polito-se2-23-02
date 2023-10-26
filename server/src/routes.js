@@ -133,7 +133,8 @@ router.get("/counter/:counterId/callNextClient", (req, res) => {
 // Get the counters joined with the services data
 router.get("/counter/getData", (req, res) => {
   const data = dataService.data;
-  if (data === undefined) {
+  
+  if (data === undefined || data.length === 0) {
     return res.status(404).json({ message: `No data is found` });
   }
   const services = data.services;
@@ -145,6 +146,7 @@ router.get("/counter/getData", (req, res) => {
       ),
     };
   });
+  console.log(JSON.stringify(counters, 0, 2))
   res.status(200).json({ data: counters });
 });
 

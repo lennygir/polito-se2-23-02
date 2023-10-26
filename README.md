@@ -49,6 +49,15 @@ All commands have to be done in the `server` folder.
   - response :
     - 200 : { data: number } - the ticket number of the client
     - 404 : { message: string } - service does not exists or is not provided by a counter
+- GET `/counter/retCounters`
+  - response :
+    - 200 : {data: {Object}} - get all counters
+    - 404 : { message: string} - no couters found
+
+- GET `/counter/getData`
+  - response :
+    - 200 : {data: {Object}} - get all counters with releted sevices
+    - 404 : { message: string} - no couters found
 
 ## Data structures
 
