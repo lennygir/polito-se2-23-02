@@ -24,6 +24,7 @@
 - Route `/admin/services`: services table view
 - Route `/officer`: officer control panel to call next client
 - Route `/client`: client page to get a new ticket
+- Route `/client/:serviceName/ticket/:ticketNumber`: ticket page for the specific service
 - Route `/*`: error route page
 
 ## API Server
@@ -83,9 +84,11 @@ Note: the clients property in "counters" is a queue of ticket numbers
 - `CountersForm` (in `CountersForm.jsx`): component used to add or remove services from a specific counter
 - `ServicesTable` (in `ServicesTable.jsx`): component used to display all the services and the metadata attached to each service
 - `OfficerPage` (in `OfficerPage.jsx`): component used to access the officer dashboard and select a counter to call the next client in line
+- `ClientPage` (in `ClientPage.jsx`): component used to let the client choose a service and get a ticket
 
 ## Screenshots
 
 ![Landing Page](img/landing-page.png)
 ![Admin Counters](img/admin-dashboard-counters.png)
 ![Officer Dashboard](img/officer-dashboard.png)
+![Client Page](img/client-page.png)

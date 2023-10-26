@@ -55,7 +55,7 @@ const getTicket = async (serviceId) => {
   return getJson(
     fetch(new URL("/service/" + serviceId + "/getTicket", SERVER_URL))
   ).then((json) => {
-    return json;
+    return json.data;
   });
 };
 
