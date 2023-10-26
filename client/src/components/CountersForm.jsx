@@ -16,7 +16,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Title from "./Title";
 import API from "../API";
 
-export default function EditCounterForm(props) {
+export default function CountersForm(props) {
   const location = useLocation();
   const navigate = useNavigate();
 

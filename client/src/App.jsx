@@ -8,7 +8,7 @@ import LandingPage from "./routes/LandingPage";
 import OfficerPage from "./routes/OfficerPage";
 import RootPage from "./routes/RootPage";
 import CountersTable from "./components/CountersTable";
-import EditCounterForm from "./components/EditCounterForm";
+import CountersForm from "./components/CountersForm";
 import ServicesTable from "./components/ServicesTable";
 import API from "./API";
 
@@ -48,10 +48,10 @@ function Main() {
         <Route index element={<LandingPage setUser={setUser} />} />
         <Route path="admin" element={<AdminPage setUser={setUser} />}>
           <Route index path="counters" element={<CountersTable counters={counters}/>} />
-          <Route path="edit-counters/:counterId" element={<EditCounterForm services={services} setDirty={setDirty}/>}/>
+          <Route path="edit-counters/:counterId" element={<CountersForm services={services} setDirty={setDirty}/>}/>
           <Route path="services" element={<ServicesTable services={services}/>}/>
         </Route>
-        <Route path="officer/:officerId" element={<OfficerPage />} />
+        <Route path="officer" element={<OfficerPage counters={counters}/>} />
         <Route path="client" element={<ClientPage />} />
         <Route path="*" element={<ErrorPage setUser={setUser} />} />
       </Route>

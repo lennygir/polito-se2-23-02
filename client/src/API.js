@@ -59,5 +59,20 @@ const getTicket = async (serviceId) => {
   });
 };
 
-const API = { getCountersServices, updateCounter, getServices, getTicket };
+const getNextClient = async (counterId) => {
+  return getJson(
+    fetch(new URL("/counter/" + counterId + "/callNextClient", SERVER_URL))
+  ).then((json) => {
+    return json.data;
+  });
+};
+
+const API = {
+  getCountersServices,
+  updateCounter,
+  getServices,
+  getTicket,
+  getNextClient,
+};
+
 export default API;
