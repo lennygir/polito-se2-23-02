@@ -4,35 +4,107 @@
     {
       "id": 1,
       "name": "Emergenze",
-      "serviceTime": 20
+      "serviceTime": 20,
+      "description": "Servizio di pronto soccorso.",
+      "color": "error"
     },
     {
       "id": 2,
       "name": "Radiologia",
-      "serviceTime": 35
+      "serviceTime": 35,
+      "description": "Servizio di diagnostica per immagini.",
+      "color": "primary"
     },
     {
       "id": 3,
       "name": "Maternità",
-      "serviceTime": 60
+      "serviceTime": 60,
+      "description": "Reparto dedicato alle nascite.",
+      "color": "secondary"
+    },
+    {
+      "id": 4,
+      "name": "Oncologia",
+      "serviceTime": 45,
+      "description": "Trattamento e assistenza oncologica.",
+      "color": "default"
+    },
+    {
+      "id": 5,
+      "name": "Pediatria",
+      "serviceTime": 30,
+      "description": "Cure mediche per bambini.",
+      "color": "info"
+    },
+    {
+      "id": 6,
+      "name": "Cardiologia",
+      "serviceTime": 40,
+      "description": "Trattamento delle malattie cardiache.",
+      "color": "error"
+    },
+    {
+      "id": 7,
+      "name": "Ortopedia",
+      "serviceTime": 50,
+      "description": "Specializzati nelle patologie muscolo-scheletriche.",
+      "color": "warning"
+    },
+    {
+      "id": 8,
+      "name": "Oculistica",
+      "serviceTime": 25,
+      "description": "Diagnostica e trattamento dei disturbi oculari.",
+      "color": "success"
+    },
+    {
+      "id": 9,
+      "name": "Neurologia",
+      "serviceTime": 55,
+      "description": "Trattamento delle malattie del sistema nervoso.",
+      "color": "secondary"
     }
   ],
   "counters": [
     {
       "id": 1,
-      "services": [2],
+      "services": [2, 4, 7],
       "clients": [],
       "servedClient": null
     },
     {
       "id": 2,
-      "services": [],
+      "services": [5, 8],
       "clients": [],
       "servedClient": null
     },
     {
       "id": 3,
-      "services": [1, 2, 3],
+      "services": [1, 2, 3, 6, 9],
+      "clients": [],
+      "servedClient": null
+    },
+    {
+      "id": 4,
+      "services": [1, 4, 6],
+      "clients": [],
+      "servedClient": null
+    },
+    {
+      "id": 5,
+      "services": [2, 8],
+      "clients": [],
+      "servedClient": null
+    },
+    {
+      "id": 6,
+      "services": [3, 7, 9],
+      "clients": [],
+      "servedClient": null
+    },
+    {
+      "id": 7,
+      "services": [1, 5, 2],
       "clients": [],
       "servedClient": null
     }

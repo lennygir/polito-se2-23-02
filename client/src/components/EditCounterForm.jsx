@@ -14,6 +14,7 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Title from "./Title";
+import API from "../API";
 
 export default function EditCounterForm(props) {
   const location = useLocation();
@@ -46,8 +47,12 @@ export default function EditCounterForm(props) {
         ...counter,
         services: selectedServices,
       };
-
-      // TODO: - Call POST or PUT API to replace the old counter with the new one and setDirty(true)
+      API.updateCounter(newCounter)
+        .then(() => {
+          props.setDirty(true);
+          navigate("/admin/counters");
+        })
+        .catch((err) => console.log(err));
     }
   };
 
@@ -63,7 +68,7 @@ export default function EditCounterForm(props) {
           Back
         </Button>
         <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-          <Title text={"Select services for Counter 1"} />
+          <Title text={"Select services for Counter " + counter.id} />
           <Box sx={{ display: "flex" }}>
             <form onSubmit={handleSubmit}>
               <FormControl
