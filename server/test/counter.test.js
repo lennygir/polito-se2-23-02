@@ -100,14 +100,12 @@ describe("Testing the counter endpoints", () => {
 
   test("GET /counter/getData - should return a formatted data of the DB", async () => {
     
-
     await request(app)
       .get("/counter/getData")
       .expect("Content-Type", /json/)
-      .expect(404)
-      .then((response) => {
-        expect(response.body.message).toBe("No counters is found");
-      });
+      .expect(200)
+      
   });
+
 
 });

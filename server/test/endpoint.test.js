@@ -84,11 +84,11 @@ describe("Adding a service into a counter", () => {
           .get("/counter/retCounters")
           .expect(200)
           .then((response) => {
-            let counter_with_clients = response.body.counters.find(
-              (counter) => counter.clients.length !== 0,
+            let counter_with_clients = response.body.data.find(
+              (counter) => counter.clients.length !== 0
             );
             request(app)
-              .get(`/counters/${counter_with_clients.id}`)
+              .put(`/counters/${counter_with_clients.id}`)
               .send({ services: [5] })
               .expect(403)
               .then((response) => {
@@ -162,10 +162,10 @@ describe("Get the queues current number", () => {
       .then((response) => {
         const id = response.body;
         request(app)
-          .get("/counters/:counterId/served-client")
+          .get("/counter/retCounters")
           .expect(200)
           .then((response) => {
-            let counter_with_clients = response.body.counters.find(
+            let counter_with_clients = response.body.data.find(
               (counter) => counter.clients.length !== 0,
             );
             request(app)
