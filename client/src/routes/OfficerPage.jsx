@@ -28,7 +28,10 @@ export default function OfficerPage(props) {
         .then((client) => {
           setClientToServe(client);
         })
-        .catch((err) => setMessage("The queue is empty at the moment."));
+        .catch((err) => {
+          setClientToServe(undefined);
+          setMessage("The queue is empty at the moment.");
+        });
     }
   };
 
