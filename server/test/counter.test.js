@@ -98,13 +98,23 @@ describe("Testing the counter endpoints", () => {
       });
   });
 
-  test("GET /counter/getData - should return a formatted data of the DB", async () => {
-    
+  test("GET /counter/getData - should return a formatted data of the DB", async () => {    
     await request(app)
       .get("/counter/getData")
       .expect("Content-Type", /json/)
       .expect(200)
       
+  });
+
+  test("GET /counter/getData - should return 404 if no data is present", async () => {
+    dataService.data = [];
+    await request(app)
+      .get("/counter/getData")
+      .expect("Content-Type", /json/)
+      .expect(404)
+      .then((response) => {
+        expect(response.body.message).toBe("No data is found");
+      });
   });
 
 

@@ -7,6 +7,7 @@ import ErrorPage from "./routes/ErrorPage";
 import LandingPage from "./routes/LandingPage";
 import OfficerPage from "./routes/OfficerPage";
 import RootPage from "./routes/RootPage";
+import TicketPage from "./routes/TicketPage";
 import CountersTable from "./components/CountersTable";
 import CountersForm from "./components/CountersForm";
 import ServicesTable from "./components/ServicesTable";
@@ -52,7 +53,8 @@ function Main() {
           <Route path="services" element={<ServicesTable services={services}/>}/>
         </Route>
         <Route path="officer" element={<OfficerPage counters={counters}/>} />
-        <Route path="client" element={<ClientPage />} />
+        <Route path="client" element={<ClientPage services={services} setDirty={setDirty} />} />
+        <Route path="client/:serviceName/ticket/:ticketNumber" element={<TicketPage services={services} counters={counters} />} />
         <Route path="*" element={<ErrorPage setUser={setUser} />} />
       </Route>
     </Routes>
