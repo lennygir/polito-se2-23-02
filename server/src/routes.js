@@ -176,7 +176,7 @@ router.get("/service/:serviceId/getTicket", (req, res) => {
   }, counters[0]);
   if (!counterWithLeastClients) {
     return res.status(404).json({
-      message: `No counter was found with the service id ${req.params.service}`,
+      message: `No counter was found with the service id ${req.params.serviceId}`,
     });
   }
   dataService.data.currentTicketNumber++;
