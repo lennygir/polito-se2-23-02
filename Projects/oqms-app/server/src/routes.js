@@ -30,7 +30,7 @@ router.put("/counters/:counterId", (req, res) => {
     return res.status(403).send("Invalid counter name");
   }
   const counter_targeted = dataService.data.counters.find(
-    (counter) => parseInt(req.params.counterId) === counter.id,
+    (counter) => parseInt(req.params.counterId) === counter.id
   );
   if (counter_targeted === undefined) {
     return res
@@ -42,7 +42,7 @@ router.put("/counters/:counterId", (req, res) => {
     return res
       .status(403)
       .send(
-        "You cannot modify the counter, because it has clients in its queue!",
+        "You cannot modify the counter, because it has clients in its queue!"
       );
   }
 
@@ -53,7 +53,7 @@ router.put("/counters/:counterId", (req, res) => {
       if (
         !Number.isInteger(service) ||
         !dataService.data.services.some(
-          (service_in_json) => service_in_json.id === service,
+          (service_in_json) => service_in_json.id === service
         )
       ) {
         service_not_existent = true;
@@ -75,7 +75,7 @@ router.put("/counters/:counterId", (req, res) => {
 // Remove a service from a counter that already hasn't it does not give an error
 router.delete("/counters/:counterId/services/:serviceId", (req, res) => {
   const counter_targeted = dataService.data.counters.find(
-    (counter) => parseInt(req.params.counterId) === counter.id,
+    (counter) => parseInt(req.params.counterId) === counter.id
   );
   if (counter_targeted === undefined) {
     return res
@@ -84,7 +84,7 @@ router.delete("/counters/:counterId/services/:serviceId", (req, res) => {
   }
   if (
     !dataService.data.services.some(
-      (service) => service.id === parseInt(req.params.serviceId),
+      (service) => service.id === parseInt(req.params.serviceId)
     )
   ) {
     return res
@@ -92,7 +92,7 @@ router.delete("/counters/:counterId/services/:serviceId", (req, res) => {
       .send("The service you want to remove does not exist");
   }
   counter_targeted.services = counter_targeted.services.filter(
-    (service) => service.id !== parseInt(req.params.serviceId),
+    (service) => service.id !== parseInt(req.params.serviceId)
   );
   return res.json({});
 });
@@ -100,7 +100,7 @@ router.delete("/counters/:counterId/services/:serviceId", (req, res) => {
 // Get the currently served client for a counter given the counterId
 router.get("/counters/:counterId/served-client", (req, res) => {
   const counter_targeted = dataService.data.counters.find(
-    (counter) => parseInt(req.params.counterId) === counter.id,
+    (counter) => parseInt(req.params.counterId) === counter.id
   );
   if (counter_targeted === undefined) {
     return res.status(403).send("The counter you want to see does not exist");
@@ -133,7 +133,7 @@ router.get("/counter/:counterId/callNextClient", (req, res) => {
 // Get the counters joined with the services data
 router.get("/counter/getData", (req, res) => {
   const data = dataService.data;
-  
+
   if (data === undefined || data.length === 0) {
     return res.status(404).json({ message: `No data is found` });
   }
@@ -142,11 +142,10 @@ router.get("/counter/getData", (req, res) => {
     return {
       id: counter.id,
       services: counter.services.map((serviceId) =>
-        services.find((service) => service.id === serviceId),
+        services.find((service) => service.id === serviceId)
       ),
     };
   });
-  console.log(JSON.stringify(counters, 0, 2))
   res.status(200).json({ data: counters });
 });
 
@@ -166,7 +165,7 @@ router.get("/service", (req, res) => {
 // Get a ticket for a service given the serviceId
 router.get("/service/:serviceId/getTicket", (req, res) => {
   const counters = dataService.data.counters.filter((c) =>
-    c.services.includes(Number(req.params.serviceId)),
+    c.services.includes(Number(req.params.serviceId))
   );
   const counterWithLeastClients = counters.reduce((acc, val) => {
     if (acc.clients.length > val.clients.length) {
